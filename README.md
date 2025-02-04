@@ -107,7 +107,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 👨‍💻 Development Team
 
-This project was developed as part of the 100xDevs Cohort 2.0 program under the mentorship of Harkirat Singh.
+This project was developed as part of the 100xDevs Cohort 3.0 program under the mentorship of Harkirat Singh.
 
 ## 📝 License
 
