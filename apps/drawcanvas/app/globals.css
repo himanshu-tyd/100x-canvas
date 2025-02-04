@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+  font-family: "Noto Sans", serif;
+  font-optical-sizing: auto;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.gradient-background {
+  background: rgb(174,238,236);
+  background: linear-gradient(138deg, rgba(174,238,236,1) 0%, rgba(255,201,208,1) 54%, rgba(86,197,255,1) 100%);
+}
+
+.clicked-effect {
+  transition: all 300ms;
+  transform: scale(1);
+}
+
+.clicked-effect:hover {
+  transform: scale(1.05);
+}
+
+.clicked-effect:active {
+  transform: scale(0.95);
+}
