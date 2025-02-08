@@ -1,0 +1,9 @@
+{
+  "/icon.svg/route": "app/icon.svg/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/canvas/[roomId]/page": "app/canvas/[roomId]/page.js",
+  "/canvas/page": "app/canvas/page.js",
+  "/page": "app/page.js",
+  "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js"
+}
