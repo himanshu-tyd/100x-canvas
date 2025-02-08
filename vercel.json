@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "projects": {
+      "drawcanvas": {
+        "root": "apps/drawcanvas",
+        "buildCommand": "turbo build --filter=drawcanvas",
+        "outputDirectory": "apps/drawcanvas/.next"
+      }
+    }
+  }
+  
