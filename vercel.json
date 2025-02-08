@@ -1,10 +1,15 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "apps/drawcanvas/package.json",
-        "use": "@vercel/next"
+    "projects": {
+      "drawcanvas": {
+        "root": "apps/drawcanvas"
+      },
+      "http-backend": {
+        "root": "apps/http-backend"
+      },
+      "ws-backend": {
+        "root": "apps/ws-backend"
       }
-    ]
+    }
   }
   
