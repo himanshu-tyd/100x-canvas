@@ -17,13 +17,7 @@ const getShapes = async (roomId: string) => {
 
     if (!shapes) return;
 
-
-    
-
-    const dataShape = shapes?.map((x:messageType) => {
-
-      console.log('xx',x)
-
+    const dataShape = shapes?.map((x: messageType) => {
       const messageData = JSON.parse(x.message);
 
       return messageData.shape;
