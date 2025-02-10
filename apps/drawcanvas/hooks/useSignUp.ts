@@ -11,7 +11,7 @@ export const useSignUp = () => {
   const singUp = async (data: SingUpType) => {
     try {
       setLoading(true);
-      const res = await api.post(`${BASE_URL_HTTP}/signup`, data);
+      const res = await api.post(`/signup`, data);
 
       const context = res.data;
 

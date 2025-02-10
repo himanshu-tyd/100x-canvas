@@ -3,8 +3,8 @@ import { BASE_URL_HTTP } from "./config";
 
 
 const api=axios.create({
-    baseURL: "/api",
+    baseURL: BASE_URL_HTTP,
     withCredentials:true
 })
 
-export  default api
+export default api
