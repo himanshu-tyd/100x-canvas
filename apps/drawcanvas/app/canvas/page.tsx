@@ -6,7 +6,7 @@ import { Paintbrush, ArrowRight, Plus, User } from "lucide-react";
 import { useCreatRoom } from "@/hooks/useCreateRom";
 import ButtonLoader from "@/components/ButtonLoader";
 import { getContext } from "@/context/AuthContext";
-import RoomCard from "@/components/RoomCard";
+import RoomCard from "@/components/canvas/RoomCard";
 import useFetchRooms from "@/hooks/useFetchRoom";
 import Loader from "@/components/Loader";
 import Error from "@/components/Error";

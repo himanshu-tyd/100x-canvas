@@ -1,0 +1,12 @@
+{
+  "buildCommand": "pnpm turbo build",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "outputDirectory": "apps/drawcanvas/.next",
+  "builds": [
+    {
+      "src": "apps/drawcanvas/package.json",
+      "use": "@vercel/next"
+    }
+  ]
+} 
