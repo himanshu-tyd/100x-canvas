@@ -1,4 +1,4 @@
-import express from "express";
+import express ,{Express} from "express";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { middleware } from "./middleware";
@@ -16,7 +16,7 @@ const corsOptions: cors.CorsOptions = {
   credentials: true,
   methods: "GET, POST ,DELETE, OPTIONS",
 };
-const app = express();
+const app:Express = express();
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
