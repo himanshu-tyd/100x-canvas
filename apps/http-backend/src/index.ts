@@ -24,6 +24,11 @@ app.use(express.json());
 
 const port = 3001;
 
+
+app.get('/test', (req,res)=>{
+  res.send("Hello word")
+})
+
 app.post("/signup", async (req, res) => {
   const parsedData = CreateUserSchema.safeParse(req.body);
   if (!parsedData.success) {
