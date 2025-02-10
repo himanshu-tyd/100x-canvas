@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "prisma generate --schema=../../packages/db/prisma/schema.prisma rimraf dist && tsc -b",
+    "build": "prisma generate --schema=../../packages/db/prisma/schema.prisma && rimraf dist && tsc -b",
     "postinstall": "prisma generate --schema=../../packages/db/prisma/schema.prisma",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
     "start": "node ./dist/index.js",
-    "dev": "npm run build && npm run start"
+    "dev": "tsx src/index.ts"
   },
   "dependencies": {
     "@repo/db": "workspace:*",
@@ -18,7 +18,8 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "@prisma/client": "^5.13.0"
   },
   "devDependencies": {
     "@repo/backend-common": "workspace:*",
@@ -28,13 +29,13 @@
     "@types/node": "^18.16.19",
     "pre-commit": "^1.2.2",
     "rimraf": "^6.0.1",
-    "tsx": "^3.12.7"
+    "tsx": "^3.12.7",
+    "prisma": "^5.13.0"
   },
-  "keywords": [],
   "pre-commit": [
     "ts.check",
-    "builds",
-    "add-builds"
+    "build",
+    "add-build"
   ],
   "author": "",
   "license": "ISC",
