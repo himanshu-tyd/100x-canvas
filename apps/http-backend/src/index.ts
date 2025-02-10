@@ -258,4 +258,8 @@ app.get("/room", middleware, async (req, res) => {
   }
 });
 
+app.listen(port ,()=>{
+  console.log('server is running at port'+ port)
+})
+
 export default app

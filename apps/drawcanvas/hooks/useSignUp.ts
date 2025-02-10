@@ -15,7 +15,7 @@ export const useSignUp = () => {
 
       const context = res.data;
 
-      if (!context.success) {
+      if (!context.success) { 
         toast.error(context.message);
       }
 

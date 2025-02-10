@@ -1,7 +1,0 @@
-{
-    "version": 2,
-    "routes": [
-      { "src": "api/(.*)", "dest": "apps/http-backend/api/$1.ts" }
-    ]
-  }
-  
