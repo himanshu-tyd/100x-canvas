@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "prebuild": "prisma generate --schema=../../packages/db/prisma/schema.prisma",
     "build": "tsc -b",
     "start": "node ./dist/index.js",
     "dev": "npm run build && npm run start"
