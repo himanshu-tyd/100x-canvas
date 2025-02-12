@@ -6,7 +6,16 @@ import { canvasType, shapesType } from "@/types/types";
 import { shapes, styleElement } from "@/constans";
 import { DrawGame } from "../_draw/DrawGame";
 import StyleBox from "@/components/StyleBox";
-import { Moon, Sun } from "lucide-react";
+import {
+  Loader2,
+  Loader2Icon,
+  LoaderCircle,
+  LoaderIcon,
+  Moon,
+  Sun,
+} from "lucide-react";
+import useGetShapes from "../_draw/getShapes";
+import Loader from "@/components/Loader";
 
 interface CanvasProps {
   roomId: string;
@@ -25,6 +34,7 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   const [selectedBackground, setSelectedBackground] =
     useState<string>("FFFFFF");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { loading, getShapes } = useGetShapes();
 
   const isDark = theme === "light";
 
@@ -47,7 +57,7 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
-      const draw = new DrawGame(canvas, roomId, socket);
+      const draw = new DrawGame(canvas, roomId, socket, getShapes);
       setDrawGame(draw);
     }
   }, [canvasRef, roomId, socket]);
@@ -61,7 +71,19 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   };
 
   return (
-    <div className="flex w-screen h-screen justify-center">
+    <div className="flex w-screen h-screen justify-center relative">
+      {loading && (
+        <div
+          className="w-screen h-screen absolute bg-opacity-95 backdrop-blur-sm
+    top-0 right-0 left-0 bg-transparent z-30  flex items-center justify-center cursor-not-allowed   "
+        >
+          <div className="flex items-center space-x-3">
+            <Loader2 className="text-blue-600 h-10 w-10 animate-spin " />
+            <span>Wait...</span>
+          </div>
+        </div>
+      )}
+
       <div
         className={`
         p-2 flex items-center justify-center gap-2 
@@ -108,8 +130,10 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
         ))}
       </div>
       <div
-        className={`fixed top-5 z-20 right-5 -translate-x-5 rounded-full  shadow-md border  p-2 flex items-center justify-center clicked-effect ${isDark ? 
-          "bg-white/95 border-slate-200 " : "bg-[#232329] text-white/95 border-slate-500 "
+        className={`fixed top-5 z-20 right-5 -translate-x-5 rounded-full  shadow-md border  p-2 flex items-center justify-center clicked-effect ${
+          isDark
+            ? "bg-white/95 border-slate-200 "
+            : "bg-[#232329] text-white/95 border-slate-500 "
         } `}
       >
         <button
@@ -119,6 +143,7 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
           {isDark ? <Moon /> : <Sun />}
         </button>
       </div>
+
       <canvas
         ref={canvasRef}
         height={canvasSize.h}
