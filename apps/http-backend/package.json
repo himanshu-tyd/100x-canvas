@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "preinstall": "pnpm --filter @repo/db run prisma generate",
+    "postinstall": "pnpm --filter=@repo/db run prisma generate",
      "build": "tsc -b && pnpm --filter=@repo/backend-common run build && pnpm --filter=@repo/db run build",
     "prestart": "pnpm --filter @repo/db run prisma generate",
     "start": "node ./dist/index.js",
