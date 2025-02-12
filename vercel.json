@@ -4,13 +4,13 @@
         {
             "src": "apps/http-backend/dist/index.js",
             "use": "@vercel/node",
-            "config": { "includeFiles": ["dist/**"] }
+            "config": { "includeFiles": ["/apps/http-backend/dist/**"] }
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "dist/index.js"
+            "dest": "/apps/http-backend/dist/index.js"
         }
     ]
 }
