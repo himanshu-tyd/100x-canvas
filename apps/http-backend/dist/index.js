@@ -238,7 +238,6 @@ app.get("/room", middleware_1.middleware, (req, res) => __awaiter(void 0, void 0
         res.status(500).json({ success: false, message: "intenal server error" });
     }
 }));
-// app.listen(port, () => {
-//   console.log("server is running at port" + port);
-// });
-exports.default = app;
+app.listen(port, () => {
+    console.log("server is running at port" + port);
+});

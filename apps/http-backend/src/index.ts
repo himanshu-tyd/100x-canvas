@@ -1,4 +1,4 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { middleware } from "./middleware";
@@ -26,11 +26,12 @@ app.use(express.json());
 
 const port = 3001;
 
-app.get("/", (req, res) => {
+
+app.get("/", (req: Request, res: Response) => {
   res.send("server is running");
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", async (req: Request, res: Response) => {
   const parsedData = CreateUserSchema.safeParse(req.body);
   if (!parsedData.success) {
     console.log(parsedData.error);
@@ -77,7 +78,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-app.post("/signin", async (req, res) => {
+app.post("/signin", async (req:Request, res:Response) => {
   const parsedData = SigninSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({
@@ -188,7 +189,7 @@ app.post("/room", middleware, async (req, res) => {
   }
 });
 
-app.get("/chats/:roomId", async (req, res) => {
+app.get("/chats/:roomId", async (req:Request, res:Response) => {
   try {
     const roomId = Number(req.params.roomId);
     const messages = await prismaClient.chat.findMany({
@@ -219,7 +220,7 @@ app.get("/chats/:roomId", async (req, res) => {
   }
 });
 
-app.get("/room/:slug", async (req, res) => {
+app.get("/room/:slug", async (req:Request, res:Response) => {
   const slug = req.params.slug;
   const room = await prismaClient.room.findFirst({
     where: {
@@ -232,7 +233,7 @@ app.get("/room/:slug", async (req, res) => {
   });
 });
 
-app.get("/room", middleware, async (req, res) => {
+app.get("/room", middleware, async (req:Request, res:Response) => {
   //@ts-ignore
   const userId = req?.userId;
 
@@ -260,9 +261,8 @@ app.get("/room", middleware, async (req, res) => {
   }
 });
 
-// app.listen(port, () => {
-//   console.log("server is running at port" + port);
-// });
+app.listen(port, () => {
+  console.log("server is running at port" + port);
+});
 
 
-export default app
