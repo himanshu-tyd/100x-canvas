@@ -43,11 +43,3 @@ export type messageType={
 
 
 export type shapesType = (typeof shapes)[number]["name"] | null;
-
-export interface Room {
-  id: string;
-  name: string;
-  createdAt: string;
-  participants?: number;
-  lastActive?: string;
-}

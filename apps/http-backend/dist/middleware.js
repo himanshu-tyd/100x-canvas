@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("@repo/backend-common/config");
 function middleware(req, res, next) {
     try {
-        const token = req.cookies['token'];
+        const token = req.cookies["token"];
         console.log(token);
         if (!token) {
             res.json({

@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 const getShapes = async (roomId: string) => {
   try {
-    const res = await api.get(`$/chats/${roomId}`);
+    const res = await api.get(`/chats/${roomId}`);
 
     const context = res.data;
 

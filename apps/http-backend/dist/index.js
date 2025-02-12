@@ -21,6 +21,9 @@ app.use((0, cors_1.default)(corsOptions));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 const port = 3001;
+app.get("/test", (req, res) => {
+    res.send("Hello word");
+});
 app.post("/signup", async (req, res) => {
     const parsedData = types_1.CreateUserSchema.safeParse(req.body);
     if (!parsedData.success) {
@@ -225,4 +228,6 @@ app.get("/room", middleware_1.middleware, async (req, res) => {
         res.status(500).json({ success: false, message: "intenal server error" });
     }
 });
-exports.default = app;
+app.listen(port, () => {
+    console.log("server is running at port" + port);
+});

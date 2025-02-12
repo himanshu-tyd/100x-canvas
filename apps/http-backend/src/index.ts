@@ -1,4 +1,4 @@
-import express ,{Express} from "express";
+import express, { Express } from "express";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@repo/backend-common/config";
 import { middleware } from "./middleware";
@@ -11,12 +11,14 @@ import { prismaClient } from "@repo/db/client";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+
+
 const corsOptions: cors.CorsOptions = {
   origin: ["http://localhost:3000"],
   credentials: true,
   methods: "GET, POST ,DELETE, OPTIONS",
 };
-const app:Express = express();
+const app: Express = express();
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
@@ -24,10 +26,9 @@ app.use(express.json());
 
 const port = 3001;
 
-
-app.get('/test', (req,res)=>{
-  res.send("Hello word")
-})
+app.get("/test", (req, res) => {
+  res.send("Hello word");
+});
 
 app.post("/signup", async (req, res) => {
   const parsedData = CreateUserSchema.safeParse(req.body);
@@ -156,10 +157,7 @@ app.post("/room", middleware, async (req, res) => {
       },
     });
 
-
-
     if (exits) {
-
       res
         .json({
           success: false,
@@ -235,7 +233,6 @@ app.get("/room/:slug", async (req, res) => {
 });
 
 app.get("/room", middleware, async (req, res) => {
-
   //@ts-ignore
   const userId = req?.userId;
 
@@ -263,8 +260,6 @@ app.get("/room", middleware, async (req, res) => {
   }
 });
 
-app.listen(port ,()=>{
-  console.log('server is running at port'+ port)
-})
-
-
+app.listen(port, () => {
+  console.log("server is running at port" + port);
+});
