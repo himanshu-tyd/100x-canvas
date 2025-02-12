@@ -3,8 +3,12 @@
     "builds": [
         {
             "src": "apps/http-backend/dist/index.js",
-            "use": "@vercel/node"
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": ["apps/http-backend/**", "packages/backend-common/**"]
+            }
         }
+        
     ],
     "routes": [
         {
