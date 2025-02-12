@@ -1,23 +1,23 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "apps/http-backend/dist/index.ts",
-            "use": "@vercel/node",
-            "config": {
-                "externalPackages": [],
-                "includeFiles": [
-                    "apps/http-backend/dist/**",
-                    "packages/backend-common/dist/**",
-                    "packages/db/dist/**"
-                ]
-            }
+      {
+        "src": "dist/index.js",
+        "use": "@vercel/node",
+        "config": {
+          "includeFiles": [
+            "dist/**",
+            "../../packages/backend-common/dist/**",
+            "../../packages/db/dist/**"
+          ]
         }
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "apps/http-backend/dist/index.ts"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "dist/index.js"
+      }
     ]
-}
+  }
+  
