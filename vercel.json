@@ -5,15 +5,18 @@
             "src": "apps/http-backend/dist/index.js",
             "use": "@vercel/node",
             "config": {
-                "includeFiles": ["apps/http-backend/dist/**", "packages/backend-common/dist/**"]
+                "includeFiles": [
+                    "apps/http-backend/dist/**",
+                    "packages/backend-common/dist/**",
+                    "packages/db/dist/**"
+                ]
             }
         }
-        
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "apps/http-backend/src/index.ts"
+            "dest": "apps/http-backend/dist/index.js"
         }
     ]
 }
