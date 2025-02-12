@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -24,7 +33,8 @@ const port = 3001;
 app.get("/", (req, res) => {
     res.send("server is running");
 });
-app.post("/signup", async (req, res) => {
+app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const parsedData = types_1.CreateUserSchema.safeParse(req.body);
     if (!parsedData.success) {
         console.log(parsedData.error);
@@ -35,7 +45,7 @@ app.post("/signup", async (req, res) => {
         return;
     }
     try {
-        const exits = await client_1.prismaClient.user.findFirst({
+        const exits = yield client_1.prismaClient.user.findFirst({
             where: {
                 email: parsedData.data.username,
             },
@@ -47,9 +57,9 @@ app.post("/signup", async (req, res) => {
             });
             return;
         }
-        const user = await client_1.prismaClient.user.create({
+        const user = yield client_1.prismaClient.user.create({
             data: {
-                email: parsedData.data?.username,
+                email: (_a = parsedData.data) === null || _a === void 0 ? void 0 : _a.username,
                 // TODO: Hash the pw
                 password: parsedData.data.password,
                 name: parsedData.data.name,
@@ -67,8 +77,8 @@ app.post("/signup", async (req, res) => {
             console.log(e.message);
         res.status(500).json({ success: false, message: "intenal server error" });
     }
-});
-app.post("/signin", async (req, res) => {
+}));
+app.post("/signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const parsedData = types_1.SigninSchema.safeParse(req.body);
     if (!parsedData.success) {
         res.json({
@@ -79,7 +89,7 @@ app.post("/signin", async (req, res) => {
     }
     try {
         // TODO: Compare the hashed pws here
-        const user = await client_1.prismaClient.user.findFirst({
+        const user = yield client_1.prismaClient.user.findFirst({
             where: {
                 email: parsedData.data.username,
                 password: parsedData.data.password,
@@ -93,7 +103,7 @@ app.post("/signin", async (req, res) => {
             return;
         }
         const token = jsonwebtoken_1.default.sign({
-            userId: user?.id,
+            userId: user === null || user === void 0 ? void 0 : user.id,
         }, config_1.JWT_SECRET, {
             expiresIn: "30d",
         });
@@ -116,8 +126,8 @@ app.post("/signin", async (req, res) => {
             console.log(e.message);
         res.status(500).json({ success: false, message: "intenal server error" });
     }
-});
-app.post("/room", middleware_1.middleware, async (req, res) => {
+}));
+app.post("/room", middleware_1.middleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const parsedData = types_1.CreateRoomSchema.safeParse(req.body);
     if (!parsedData.success) {
         res.json({
@@ -129,7 +139,7 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
     // @ts-ignore: TODO: Fix this
     const userId = req.userId;
     try {
-        const exits = await client_1.prismaClient.room.findFirst({
+        const exits = yield client_1.prismaClient.room.findFirst({
             where: {
                 slug: parsedData.data.name,
                 adminId: userId,
@@ -144,7 +154,7 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
                 .end();
             return;
         }
-        const room = await client_1.prismaClient.room.create({
+        const room = yield client_1.prismaClient.room.create({
             data: {
                 slug: parsedData.data.name,
                 adminId: userId,
@@ -162,11 +172,11 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
             console.log(e.message);
         res.status(500).json({ success: false, message: "intenal server error" });
     }
-});
-app.get("/chats/:roomId", async (req, res) => {
+}));
+app.get("/chats/:roomId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const roomId = Number(req.params.roomId);
-        const messages = await client_1.prismaClient.chat.findMany({
+        const messages = yield client_1.prismaClient.chat.findMany({
             where: {
                 roomId: roomId,
             },
@@ -191,10 +201,10 @@ app.get("/chats/:roomId", async (req, res) => {
             console.log(e.message);
         res.status(500).json({ success: false, message: "intenal server error" });
     }
-});
-app.get("/room/:slug", async (req, res) => {
+}));
+app.get("/room/:slug", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const slug = req.params.slug;
-    const room = await client_1.prismaClient.room.findFirst({
+    const room = yield client_1.prismaClient.room.findFirst({
         where: {
             slug,
         },
@@ -202,12 +212,12 @@ app.get("/room/:slug", async (req, res) => {
     res.json({
         room,
     });
-});
-app.get("/room", middleware_1.middleware, async (req, res) => {
+}));
+app.get("/room", middleware_1.middleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //@ts-ignore
-    const userId = req?.userId;
+    const userId = req === null || req === void 0 ? void 0 : req.userId;
     try {
-        const room = await client_1.prismaClient.room.findMany({
+        const room = yield client_1.prismaClient.room.findMany({
             where: {
                 adminId: userId,
             },
@@ -227,7 +237,7 @@ app.get("/room", middleware_1.middleware, async (req, res) => {
             console.log(e.message);
         res.status(500).json({ success: false, message: "intenal server error" });
     }
-});
+}));
 // app.listen(port, () => {
 //   console.log("server is running at port" + port);
 // });

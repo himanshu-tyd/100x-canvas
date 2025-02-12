@@ -8,14 +8,11 @@ import { DrawGame } from "../_draw/DrawGame";
 import StyleBox from "@/components/StyleBox";
 import {
   Loader2,
-  Loader2Icon,
-  LoaderCircle,
-  LoaderIcon,
   Moon,
   Sun,
 } from "lucide-react";
 import useGetShapes from "../_draw/getShapes";
-import Loader from "@/components/Loader";
+
 
 interface CanvasProps {
   roomId: string;
@@ -60,7 +57,7 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
       const draw = new DrawGame(canvas, roomId, socket, getShapes);
       setDrawGame(draw);
     }
-  }, [canvasRef, roomId, socket]);
+  }, [canvasRef, roomId, socket, getShapes]);
 
   const handleSetShape = (shapeName: string) => {
     setSelectedShape(shapeName as shapesType);
