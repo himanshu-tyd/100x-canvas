@@ -26,8 +26,8 @@ app.use(express.json());
 
 const port = 3001;
 
-app.get("/test", (req, res) => {
-  res.send("Hello word");
+app.get("/", (req, res) => {
+  res.send("server is running");
 });
 
 app.post("/signup", async (req, res) => {
