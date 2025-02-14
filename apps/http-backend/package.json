@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b && pnpm --filter=@repo/backend-common run build && pnpm --filter=@repo/db run build",
-    "postinstall": "pnpm --filter=@repo/db run prisma generate",
+    "prestart": "pnpm --filter=@repo/db run prisma generate",
     "start": "pnpm --filter=@repo/db run prisma generate && node dist/index.js",
     "dev": "pnpm run build && pnpm run start"
   },
