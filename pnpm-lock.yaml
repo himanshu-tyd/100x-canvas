@@ -21,6 +21,19 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
+  apps/database:
+    dependencies:
+      '@prisma/client':
+        specifier: 6.3.1
+        version: 6.3.1(prisma@6.3.1(typescript@5.5.4))(typescript@5.5.4)
+      prisma:
+        specifier: ^6.3.1
+        version: 6.3.1(typescript@5.5.4)
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+
   apps/drawcanvas:
     dependencies:
       axios:
@@ -87,9 +100,9 @@ importers:
       '@repo/backend-common':
         specifier: workspace:*
         version: link:../../packages/backend-common
-      '@repo/db':
+      '@repo/database':
         specifier: workspace:*
-        version: link:../../packages/db
+        version: link:../database
       cookie-parser:
         specifier: ^1.4.7
         version: 1.4.7
@@ -130,9 +143,6 @@ importers:
 
   apps/ws-backend:
     dependencies:
-      '@repo/db':
-        specifier: workspace:*
-        version: link:../../packages/db
       '@types/jsonwebtoken':
         specifier: ^9.0.7
         version: 9.0.8
@@ -172,19 +182,6 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-
-  packages/db:
-    dependencies:
-      '@prisma/client':
-        specifier: 6.3.1
-        version: 6.3.1(prisma@6.3.1(typescript@5.5.4))(typescript@5.5.4)
-    devDependencies:
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      prisma:
-        specifier: 6.3.1
-        version: 6.3.1(typescript@5.5.4)
 
   packages/eslint-config:
     devDependencies:

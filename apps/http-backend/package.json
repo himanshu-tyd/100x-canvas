@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "postinstall": "[ ! -d 'node_modules/.prisma' ] && cd ../../packages/db && npx prisma generate || echo 'Prisma already generated'",
+    "postinstall": "pnpm --filter=apps/db run prisma generate",
     "build": "tsc -b",
-    "start": "npx prisma generate --schema=packages/db/prisma/schema.prisma && node dist/index.js",
-    "dev": "pnpm run build && pnpm run start"
+    "start": "npx prisma generate --schema=../db/prisma/schema.prisma && node dist/index.js",
+    "dev": " pnpm run build && pnpm run start "
   },
   "dependencies": {
-    "@repo/db": "workspace:*",
+    "@repo/database": "workspace:*",
     "@repo/backend-common": "workspace:*",
     "express": "^4.21.2",
     "cors": "^2.8.5",

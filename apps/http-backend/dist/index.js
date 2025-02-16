@@ -8,7 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("@repo/backend-common/config");
 const middleware_1 = require("./middleware");
 const types_1 = require("@repo/common/types");
-const client_1 = require("@repo/db/client");
+const config_2 = __importDefault(require("@repo/database/config"));
 const cors_1 = __importDefault(require("cors"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const corsOptions = {
@@ -35,7 +35,7 @@ app.post("/signup", async (req, res) => {
         return;
     }
     try {
-        const exits = await client_1.prismaClient.user.findFirst({
+        const exits = await config_2.default.user.findFirst({
             where: {
                 email: parsedData.data.username,
             },
@@ -47,7 +47,7 @@ app.post("/signup", async (req, res) => {
             });
             return;
         }
-        const user = await client_1.prismaClient.user.create({
+        const user = await config_2.default.user.create({
             data: {
                 email: parsedData.data?.username,
                 // TODO: Hash the pw
@@ -79,7 +79,7 @@ app.post("/signin", async (req, res) => {
     }
     try {
         // TODO: Compare the hashed pws here
-        const user = await client_1.prismaClient.user.findFirst({
+        const user = await config_2.default.user.findFirst({
             where: {
                 email: parsedData.data.username,
                 password: parsedData.data.password,
@@ -129,7 +129,7 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
     // @ts-ignore: TODO: Fix this
     const userId = req.userId;
     try {
-        const exits = await client_1.prismaClient.room.findFirst({
+        const exits = await config_2.default.room.findFirst({
             where: {
                 slug: parsedData.data.name,
                 adminId: userId,
@@ -144,7 +144,7 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
                 .end();
             return;
         }
-        const room = await client_1.prismaClient.room.create({
+        const room = await config_2.default.room.create({
             data: {
                 slug: parsedData.data.name,
                 adminId: userId,
@@ -166,7 +166,7 @@ app.post("/room", middleware_1.middleware, async (req, res) => {
 app.get("/chats/:roomId", async (req, res) => {
     try {
         const roomId = Number(req.params.roomId);
-        const messages = await client_1.prismaClient.chat.findMany({
+        const messages = await config_2.default.chat.findMany({
             where: {
                 roomId: roomId,
             },
@@ -194,7 +194,7 @@ app.get("/chats/:roomId", async (req, res) => {
 });
 app.get("/room/:slug", async (req, res) => {
     const slug = req.params.slug;
-    const room = await client_1.prismaClient.room.findFirst({
+    const room = await config_2.default.room.findFirst({
         where: {
             slug,
         },
@@ -207,7 +207,7 @@ app.get("/room", middleware_1.middleware, async (req, res) => {
     //@ts-ignore
     const userId = req?.userId;
     try {
-        const room = await client_1.prismaClient.room.findMany({
+        const room = await config_2.default.room.findMany({
             where: {
                 adminId: userId,
             },
