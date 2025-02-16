@@ -5,7 +5,7 @@
   "scripts": {
     "global-build": "tsc -b",
     "build": "pnpm install && pnpm run global-build",
-    "postinstall": "cd ../database && pnpm install && pnpm prisma generate",
+    "postinstall": "if [ \"$PWD\" != \"$(pwd)/../database\" ]; then cd ../database && pnpm prisma generate; fi",
     "start": "node dist/index.js",
     "dev": " pnpm run build && pnpm run start "
   },
