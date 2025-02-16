@@ -143,6 +143,9 @@ importers:
 
   apps/ws-backend:
     dependencies:
+      '@repo/database':
+        specifier: workspace:*
+        version: link:../database
       '@types/jsonwebtoken':
         specifier: ^9.0.7
         version: 9.0.8

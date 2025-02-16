@@ -8,6 +8,7 @@
     "dev": "npm run build && npm run start"
   },
   "dependencies": {
+    "@repo/database": "workspace:*",
     "@types/jsonwebtoken": "^9.0.7",
     "jsonwebtoken": "^9.0.2",
     "ws": "^8.18.0"

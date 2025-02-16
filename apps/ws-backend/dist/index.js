@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ws_1 = require("ws");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const config_1 = require("@repo/backend-common/config");
-const client_1 = require("@repo/db/client");
+const config_2 = __importDefault(require("@repo/database/config"));
 const wss = new ws_1.WebSocketServer({ port: 8080 });
 const users = [];
 function checkUser(token) {
@@ -60,7 +60,7 @@ wss.on("connection", function connection(ws, request) {
             if (parsedData.type === "chat") {
                 const roomId = parsedData.roomId;
                 const message = parsedData.message;
-                await client_1.prismaClient.chat.create({
+                await config_2.default.chat.create({
                     data: {
                         roomId: Number(roomId),
                         message,
