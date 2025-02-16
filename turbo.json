@@ -6,10 +6,11 @@
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [
-        "apps/http-backend/dist/**", 
+        "apps/http-backend/dist/**",
         "packages/**/dist/**",
         "!.next/cache/**"
-      ]
+      ],
+      "filter": ["apps/http-backend"]
     },
     "dev": {
       "cache": false,
