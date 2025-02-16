@@ -4,7 +4,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "paths": {
-      "@repo/database": ["../database/src"]   // ✅ Updated path
+      "@repo/database": ["../database/src"]   
     }
   }
 }
