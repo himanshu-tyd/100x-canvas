@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-   "postinstall": "pnpm --filter=apps/database run prisma generate",
+ "postinstall": "cd ../database && pnpm prisma generate",
     "build": "tsc -b",
-    "start": "npx prisma generate --schema=../db/prisma/schema.prisma && node dist/index.js",
+    "start": "npx prisma generate --schema=../database/prisma/schema.prisma && node dist/index.js",
     "dev": " pnpm run build && pnpm run start "
   },
   "dependencies": {
