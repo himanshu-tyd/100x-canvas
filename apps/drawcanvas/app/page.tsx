@@ -6,6 +6,8 @@ import { ArrowRight, Paintbrush, Share2, Users, LogIn } from "lucide-react";
 import Link from "next/link";
 import { getContext } from "@/context/AuthContext";
 
+
+//landing page
 const LandingPage100xCanvas = () => {
   const { user } = getContext();
 
