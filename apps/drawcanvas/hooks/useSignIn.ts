@@ -4,10 +4,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import api from "@/lib/axiosInstance";
 import { isServer } from "@/lib/helper";
-import { getContext } from "@/context/AuthContext";
+import { useGetContext } from "@/context/AuthContext";
 
 export const useSignIn = () => {
-  const { setUser } = getContext();
+  const { setUser } = useGetContext();
 
   const [loading, setLoading] = useState<false | true>(false);
   const signIn = async (data: signInType) => {

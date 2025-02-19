@@ -6,7 +6,7 @@ import { Paintbrush, ArrowLeft } from "lucide-react";
 import { signInType } from "@/types/types";
 import { useSignIn } from "@/hooks/useSignIn";
 import ButtonLoader from "@/components/ButtonLoader";
-import { getContext } from "@/context/AuthContext";
+import { useGetContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 function SignIn() {
@@ -16,7 +16,7 @@ function SignIn() {
   });
 
   const { loading, signIn } = useSignIn();
-  const { user } = getContext();
+  const { user } = useGetContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;

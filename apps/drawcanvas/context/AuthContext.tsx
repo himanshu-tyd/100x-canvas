@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { isServer } from "@/lib/helper";
 import { userDataType } from "@/types/types";
@@ -15,8 +15,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<userDataType | null>(null);
 
   useEffect(() => {
-
-      if(isServer) return
+    if (isServer) return;
     const storedUser = window.localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -28,20 +27,19 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     user,
   };
 
-  return   <AuthContext.Provider value={context}> {children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={context}> {children}</AuthContext.Provider>
+  );
+};
 
-}
+export default AuthContextProvider;
 
-export default  AuthContextProvider
+export const useGetContext = () => {
+  const contex = useContext(AuthContext);
 
-export const getContext=()=>{
-  const contex= useContext(AuthContext)
-
-  if(contex)
-  {
-    return contex
-  }else{
-    throw new Error('Please Make sure you are login')
+  if (contex) {
+    return contex;
+  } else {
+    throw new Error("Please Make sure you are login");
   }
-
-}
+};

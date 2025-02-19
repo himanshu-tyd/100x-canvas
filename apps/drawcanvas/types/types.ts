@@ -1,4 +1,4 @@
-import { shapes as shapeTypes } from "@/app/_draw/shapes";
+
 import { shapes } from "@/constans";
 
 
@@ -39,7 +39,4 @@ export type messageType={
 }
 
 
-
-
-
-export type shapesType = (typeof shapes)[number]["name"] | null;
+export type shapesType = (typeof shapes )[number]["name"] | null;

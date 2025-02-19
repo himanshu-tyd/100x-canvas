@@ -1,5 +1,4 @@
 import { roomType } from "@/types/types";
-import { BASE_URL_HTTP } from "@/lib/config";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";

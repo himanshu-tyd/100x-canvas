@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Paintbrush, ArrowRight, Plus, User } from "lucide-react";
 import { useCreatRoom } from "@/hooks/useCreateRom";
 import ButtonLoader from "@/components/ButtonLoader";
-import { getContext } from "@/context/AuthContext";
+import { useGetContext } from "@/context/AuthContext";
 import RoomCard from "@/components/RoomCard";
 import useFetchRooms from "@/hooks/useFetchRoom";
 import Loader from "@/components/Loader";
@@ -14,10 +14,10 @@ import { useRouter } from "next/navigation";
 import { isServer } from "@/lib/helper";
 
 function CreateRoom() {
-  const [roomName, setRoomName] = useState("");
+  const [roomName, setRoomName] = useState("");   
   const { loading, createRoom } = useCreatRoom();
 
-  const { user, setUser } = getContext();
+  const { user, setUser } = useGetContext();
   const { loading: roomLoader, error, data: rooms } = useFetchRooms();
   const router = useRouter();
 

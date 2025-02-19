@@ -6,7 +6,6 @@ export function middleware(req: Request, res: Response, next: NextFunction) {
   try {
     const token = req.cookies["token"];
 
-    console.log(token);
 
     if (!token) {
       res.json({

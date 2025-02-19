@@ -8,7 +8,7 @@ export class DrawGame {
   private roomId: string;
   private clickMouse: boolean;
   socket: WebSocket;
-  getShapes: (roomId: string) => Promise<any>;
+  getShapes: (roomId: string) => Promise<shapes[]>;
   private startX: number;
   private startY: number;
   private seletedTool: shapesType = null;
@@ -19,7 +19,7 @@ export class DrawGame {
     canvas: HTMLCanvasElement,
     roomId: string,
     socket: WebSocket,
-    getShapes: (roomId: string) => Promise<any>
+    getShapes: (roomId: string) => Promise<shapes[]>
   ) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d")!;
@@ -49,7 +49,8 @@ export class DrawGame {
 
   //geting existing shapes from backend
   async inittDraw() {
-    this.existingShapes = await this.getShapes(this.roomId);
+
+    this.existingShapes =await this.getShapes(this.roomId)
     this.clearCanvas();
   }
 
@@ -80,7 +81,7 @@ export class DrawGame {
 
   initMouseHandler() {
     //mousedown handler
-    this.canvas.addEventListener("mousedown", (e) => {
+    this.canvas.addEventListener("mousedown", (e:MouseEvent) => {
       this.clickMouse = true;
 
       const position = this.getMouseProp(e);
@@ -94,7 +95,7 @@ export class DrawGame {
     });
 
     //mouse move handler
-    this.canvas.addEventListener("mousemove", (e) => {
+    this.canvas.addEventListener("mousemove", (e:MouseEvent) => {
       if (!this.clickMouse) return;
 
       const position = this.getMouseProp(e);
@@ -234,7 +235,6 @@ export class DrawGame {
           this.ctx.lineTo(line1X, line1Y);
           this.ctx.stroke();
 
-          console.log(endX, endY);
           //second line draw
           this.ctx.beginPath();
           this.ctx.moveTo(endX, endY);
@@ -395,7 +395,6 @@ export class DrawGame {
           break;
       }
 
-      console.log(shape);
 
       if (!shape) return;
 

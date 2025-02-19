@@ -156,6 +156,8 @@ app.post("/room", middleware, async (req:Request, res:Response) => {
       },
     });
 
+    console.log(exits)
+
     if (exits) {
       res
         .json({

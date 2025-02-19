@@ -6,7 +6,7 @@ import { Paintbrush, ArrowLeft } from "lucide-react";
 import { SingUpType } from "@/types/types";
 import { useSignUp } from "@/hooks/useSignUp";
 import ButtonLoader from "@/components/ButtonLoader";
-import { getContext } from "@/context/AuthContext";
+import { useGetContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 function SignUp() {
@@ -16,7 +16,7 @@ function SignUp() {
     name: "",
   });
 
-  const { user } = getContext();
+  const { user } = useGetContext();
 
   const router = useRouter();
 

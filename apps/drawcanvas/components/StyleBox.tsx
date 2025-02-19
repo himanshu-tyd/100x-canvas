@@ -18,7 +18,6 @@ const StyleBox = ({
   const [stroke, setStroke] = useState(false);
   const [background, setBackground] = useState(false);
 
-  console.log("strroke", selectedColor);
   const handleClick = (color: string, title: string) => {
     if (title === "stroke") {
       setSelectedColor(color || "1E1E1E"); // Ensures it always has a default
@@ -32,7 +31,6 @@ const StyleBox = ({
       setStroke(false);
     }
   };
-  console.log(selectedBackground, selectedColor);
 
   return (
     <div className="flex flex-col px-2 py-3 font-normal text-[10px] capitalize space-y-1">

@@ -14,7 +14,6 @@ const CanvasPage = async ({ params }: canvasprops) => {
 
   const roomId = (await params).roomId;
 
-  console.log(roomId)
 
   return <RoomCanvas roomId={roomId} />;
 };

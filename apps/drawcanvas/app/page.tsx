@@ -4,12 +4,12 @@ import Button from "@/components/Button";
 import { getFullYear } from "@/lib/helper";
 import { ArrowRight, Paintbrush, Share2, Users, LogIn } from "lucide-react";
 import Link from "next/link";
-import { getContext } from "@/context/AuthContext";
+import { useGetContext } from "@/context/AuthContext";
 
 
 //landing page
 const LandingPage100xCanvas = () => {
-  const { user } = getContext();
+  const { user } = useGetContext();
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-[138deg] from-[#AEEAEC] via-[#FFC9D0] to-[#56C5FF]">
