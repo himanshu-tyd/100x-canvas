@@ -4,9 +4,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
-    "start": "prisma:generate && node dist/index.js",
+    "install": "pnpm install",
     "dev": " pnpm run build && pnpm run start ",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "start": "install && prisma:generate && node dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "6.3.1",
