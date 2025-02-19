@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -b",
+    "preinstall": "corepack enable", 
+    "build": "pnpm install --filter http-ws-backend... && pnpm prisma generate && tsc -b",
     "dev": "pnpm run build && pnpm run start",
-    "prisma:generate": "prisma generate",
-    "start": "pnpm install && pnpm prisma:generate && pnpm prisma migrate deploy && pnpm build && node dist/index.js"
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "6.3.1",
