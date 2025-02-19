@@ -7,9 +7,11 @@ import {
   SigninSchema,
   CreateRoomSchema,
 } from "@repo/common/types";
-import prismaClient from "@repo/database/config"
+
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { app , server  } from "./ws";
+import { prismaClient } from "./helper";
 
 
 
@@ -19,13 +21,13 @@ const corsOptions: cors.CorsOptions = {
   credentials: true,
   methods: "GET, POST ,DELETE, OPTIONS",
 };
-const app: Express = express();
+// const app: Express = express();
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
-const port = 3001;
+const port = 8000;
 
 
 app.get("/", (_, res: Response) => {
@@ -262,8 +264,9 @@ app.get("/room", middleware, async (req:Request, res:Response) => {
   }
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("server is running at port" + port);
 });
+
 
 

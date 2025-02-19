@@ -6,13 +6,8 @@ import { canvasType, shapesType } from "@/types/types";
 import { shapes, styleElement } from "@/constans";
 import { DrawGame } from "../_draw/DrawGame";
 import StyleBox from "@/components/StyleBox";
-import {
-  Loader2,
-  Moon,
-  Sun,
-} from "lucide-react";
+import { Loader2, Moon, Sun } from "lucide-react";
 import useGetShapes from "../_draw/getShapes";
-
 
 interface CanvasProps {
   roomId: string;
@@ -31,19 +26,19 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   const [selectedBackground, setSelectedBackground] =
     useState<string>("FFFFFF");
   const [theme, setTheme] = useState<"light" | "dark">("light");
+
   const { loading, getShapes } = useGetShapes();
 
   const isDark = theme === "light";
 
   useEffect(() => {
     const windowSize = () => {
-      const h = window.innerHeight;
-      const w = window.innerWidth;
-      setCanvasSize({ h, w });
+      setCanvasSize({ h: window.innerHeight, w: window.innerWidth });
     };
     window.addEventListener("resize", windowSize);
     return () => window.removeEventListener("resize", windowSize);
   }, []);
+
 
   useEffect(() => {
     drawGame?.setTool(selectedShape);
@@ -52,12 +47,10 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   }, [selectedShape, drawGame, selectedColor, selectedBackground]);
 
   useEffect(() => {
-    if (canvasRef.current) {
-      const canvas = canvasRef.current;
-      const draw = new DrawGame(canvas, roomId, socket, getShapes);
-      setDrawGame(draw);
+    if (canvasRef.current  && !drawGame ) {
+      setDrawGame(new DrawGame(canvasRef.current, roomId, socket, getShapes))
     }
-  }, [canvasRef, roomId, socket, getShapes]);
+  }, [canvasRef, roomId, socket, getShapes , drawGame]);
 
   const handleSetShape = (shapeName: string) => {
     setSelectedShape(shapeName as shapesType);
@@ -66,7 +59,8 @@ const Canvas = ({ roomId, socket }: CanvasProps) => {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
+  
+  
   return (
     <div className="flex w-screen h-screen justify-center relative">
       {loading && (

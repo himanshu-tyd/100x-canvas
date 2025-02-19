@@ -20,6 +20,7 @@ model User {
   name          String
   photo         String?
   rooms         Room[]
+  
   chats         Chat[]
 }
 

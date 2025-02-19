@@ -28,8 +28,12 @@ const useGetShapes =  () => {
 
         return messageData.shape;
       });
-
+      
+      setLoading(false)
+      
       return dataShape;
+
+
     } catch (e) {
       if (e instanceof Error) toast.error(e.message);
       console.log(e);

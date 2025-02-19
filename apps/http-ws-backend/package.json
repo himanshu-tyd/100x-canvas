@@ -1,21 +1,23 @@
 {
-  "name": "http-backend",
+  "name": "http-ws-backend",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "global-build": "tsc -b",
-    "build": "pnpm install && pnpm run global-build",
-    "postinstall": "if [ \"$PWD\" != \"$(pwd)/../database\" ]; then cd ../database && pnpm prisma generate; fi",
+    "build": "tsc -b",
     "start": "node dist/index.js",
     "dev": " pnpm run build && pnpm run start "
   },
   "dependencies": {
-    "@repo/database": "workspace:*",
+    "@prisma/client": "6.3.1",
     "@repo/backend-common": "workspace:*",
-    "express": "^4.21.2",
-    "cors": "^2.8.5",
+    "@repo/database": "workspace:*",
+    "@types/ws": "^8.5.13",
     "cookie-parser": "^1.4.7",
-    "jsonwebtoken": "^9.0.2"
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.3.1",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@repo/common": "workspace:*",

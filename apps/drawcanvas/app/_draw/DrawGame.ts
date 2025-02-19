@@ -417,6 +417,7 @@ export class DrawGame {
 
     this.ctx.lineWidth = 1;
 
+
     this.existingShapes?.map((shape) => {
       switch (shape.type) {
         case "square":
