@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "@repo/backend-common/config";
+import dotevn from 'dotenv'
 import { middleware } from "./middleware";
 import {
   CreateUserSchema,
@@ -11,9 +11,10 @@ import {
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { app , server  } from "./ws";
-import { prismaClient } from "./helper";
+import { prismaClient  ,JWT_SECRET} from "./helper";
 
 
+dotevn.config()
 
 
 const corsOptions: cors.CorsOptions = {

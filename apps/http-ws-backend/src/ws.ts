@@ -2,8 +2,7 @@ import http from 'http'
 import express , {Express} from 'express'
 import { WebSocketServer  ,WebSocket} from 'ws'
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from '@repo/backend-common/config'
-import { prismaClient } from './helper'
+import { prismaClient , JWT_SECRET} from './helper'
 
 const app:Express=express()
 
