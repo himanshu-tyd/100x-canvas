@@ -4,15 +4,13 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
-    "install": "pnpm install",
-    "dev": " pnpm run build && pnpm run start ",
-    "prisma:generate": "npx prisma generate",
-    "start": "install && prisma:generate && node dist/index.js"
+    "dev": "pnpm run build && pnpm run start",
+    "prisma:generate": "prisma generate",
+    "start": "pnpm install && pnpm prisma:generate && pnpm prisma migrate deploy && pnpm build && node dist/index.js"
   },
   "dependencies": {
     "@prisma/client": "6.3.1",
     "@repo/backend-common": "workspace:*",
-    "@repo/database": "workspace:*",
     "@types/ws": "^8.5.13",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
