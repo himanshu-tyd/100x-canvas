@@ -2,20 +2,14 @@ import express, { Express, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotevn from 'dotenv'
 import { middleware } from "./middleware";
-import {
-  CreateUserSchema,
-  SigninSchema,
-  CreateRoomSchema,
-} from "@repo/common/types";
 
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { app , server  } from "./ws";
 import { prismaClient  ,JWT_SECRET} from "./helper";
-
+import { CreateRoomSchema, CreateUserSchema, SigninSchema } from "./types.js";
 
 dotevn.config()
-
 
 const corsOptions: cors.CorsOptions = {
   origin: ["http://localhost:3000"],
@@ -141,7 +135,7 @@ app.post("/signin", async (req:Request, res:Response) => {
   }
 });
 
-app.post("/room", middleware, async (req, res) => {
+app.post("/room", middleware, async (req:Request, res:Response) => {
   const parsedData = CreateRoomSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({

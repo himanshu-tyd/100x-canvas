@@ -4,6 +4,7 @@
     "outDir": "./dist",
     "module": "NodeNext",
     "target": "ESNext",
+    "moduleResolution": "nodenext",
     "rootDir": "./src",
    "baseUrl": "./",
     "paths": {
