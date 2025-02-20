@@ -11,7 +11,6 @@
         "dest": "/"
       }
     ],
-    "installCommand": "pnpm install",
-    "buildCommand": "pnpm run build && pnpm run postbuild"
+        "installCommand": "pnpm install --shamefully-hoist"
   }
   
