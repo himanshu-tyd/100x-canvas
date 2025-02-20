@@ -29,9 +29,6 @@ importers:
       cors:
         specifier: ^2.8.5
         version: 2.8.5
-      express:
-        specifier: ^4.21.2
-        version: 4.21.2
       lucide-react:
         specifier: ^0.473.0
         version: 0.473.0(react@19.0.0)
@@ -51,9 +48,6 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.2.0
-      '@types/express':
-        specifier: ^5.0.0
-        version: 5.0.0
       '@types/node':
         specifier: ^20.17.17
         version: 20.17.17
