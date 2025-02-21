@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "prebuild": "npx tailwindcss -i ./src/app/globals.css -o ./src/app/globals.css",
     "lint": "next lint"
   },
   "dependencies": {

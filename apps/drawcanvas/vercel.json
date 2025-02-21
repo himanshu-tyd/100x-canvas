@@ -11,6 +11,7 @@
         "dest": "/"
       }
     ],
-        "installCommand": "pnpm install --shamefully-hoist"
+        "installCommand": "pnpm install"
+      
   }
   
