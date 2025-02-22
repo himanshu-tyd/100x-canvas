@@ -5,7 +5,7 @@
             "use": "@vercel/next"
         }
     ],
-    "buildCommand": "pnpm install && pnpm build",
+    "buildCommand": " pnpm build",
     "installCommand": "pnpm install",
     "outputDirectory": ".next"
 }
