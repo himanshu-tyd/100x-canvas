@@ -1,25 +1,25 @@
 import express, { Express, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import dotevn from 'dotenv'
+import dotevn from "dotenv";
 import { middleware } from "./middleware";
 
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { app , server  } from "./ws";
-import { prismaClient  ,JWT_SECRET} from "./helper";
+import { app, server } from "./ws";
+import { prismaClient, JWT_SECRET } from "./helper";
 import { CreateRoomSchema, CreateUserSchema, SigninSchema } from "./types.js";
 
-dotevn.config()
+dotevn.config();
 
+const ORIGIN_URL = process.env.CLIENT_BASE_URL ?? "http://localhost:3000";
 
-const ORIGIN_URL=process.env.CLIENT_BASE_URL ?? "http://localhost:3000"
-
-console.log(ORIGIN_URL)
+console.log(ORIGIN_URL);
 
 const corsOptions: cors.CorsOptions = {
   origin: ORIGIN_URL,
   credentials: true,
   methods: "GET, POST ,DELETE, OPTIONS",
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 // const app: Express = express();
 
@@ -28,7 +28,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 const port = 8000;
-
 
 app.get("/", (_, res: Response) => {
   res.send("server is running");
@@ -81,7 +80,7 @@ app.post("/signup", async (req: Request, res: Response) => {
   }
 });
 
-app.post("/signin", async (req:Request, res:Response) => {
+app.post("/signin", async (req: Request, res: Response) => {
   const parsedData = SigninSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({
@@ -118,10 +117,13 @@ app.post("/signin", async (req:Request, res:Response) => {
       }
     );
 
+    console.log( process.env.NODE_ENV)
+
     res.cookie("token", token, {
-      maxAge: 30 * 60 * 60 * 24 * 1000,
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production", // ✅ Only secure in production
+      sameSite: "none", // ✅ Required for cross-origin cookies
     });
 
     res.json({
@@ -140,7 +142,7 @@ app.post("/signin", async (req:Request, res:Response) => {
   }
 });
 
-app.post("/room", middleware, async (req:Request, res:Response) => {
+app.post("/room", middleware, async (req: Request, res: Response) => {
   const parsedData = CreateRoomSchema.safeParse(req.body);
   if (!parsedData.success) {
     res.json({
@@ -161,7 +163,7 @@ app.post("/room", middleware, async (req:Request, res:Response) => {
       },
     });
 
-    console.log(exits)
+    console.log(exits);
 
     if (exits) {
       res
@@ -194,7 +196,7 @@ app.post("/room", middleware, async (req:Request, res:Response) => {
   }
 });
 
-app.get("/chats/:roomId", async (req:Request, res:Response) => {
+app.get("/chats/:roomId", async (req: Request, res: Response) => {
   try {
     const roomId = Number(req.params.roomId);
     const messages = await prismaClient.chat.findMany({
@@ -225,7 +227,7 @@ app.get("/chats/:roomId", async (req:Request, res:Response) => {
   }
 });
 
-app.get("/room/:slug", async (req:Request, res:Response) => {
+app.get("/room/:slug", async (req: Request, res: Response) => {
   const slug = req.params.slug;
   const room = await prismaClient.room.findFirst({
     where: {
@@ -238,7 +240,7 @@ app.get("/room/:slug", async (req:Request, res:Response) => {
   });
 });
 
-app.get("/room", middleware, async (req:Request, res:Response) => {
+app.get("/room", middleware, async (req: Request, res: Response) => {
   //@ts-ignore
   const userId = req?.userId;
 
@@ -269,6 +271,3 @@ app.get("/room", middleware, async (req:Request, res:Response) => {
 server.listen(port, () => {
   console.log("server is running at port " + port);
 });
-
-
-
