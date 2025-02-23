@@ -267,7 +267,7 @@ app.get("/room", middleware, async (req:Request, res:Response) => {
 });
 
 server.listen(port, () => {
-  console.log("server is running at port" + port);
+  console.log("server is running at port " + port);
 });
 
 
