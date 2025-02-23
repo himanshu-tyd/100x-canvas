@@ -17,7 +17,7 @@ const ORIGIN_URL=process.env.CLIENT_BASE_URL ?? "http://localhost:3000"
 console.log(ORIGIN_URL)
 
 const corsOptions: cors.CorsOptions = {
-  origin: [ORIGIN_URL],
+  origin: ORIGIN_URL,
   credentials: true,
   methods: "GET, POST ,DELETE, OPTIONS",
 };
