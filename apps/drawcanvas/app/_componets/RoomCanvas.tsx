@@ -29,13 +29,13 @@ const RoomCanvas = ({ roomId }: roomProps) => {
         })
       );
     };
-  }, [roomId]);
+  }, [roomId, ws_url]);
 
   if (!socket) {
     return (
       <div className="flex w-screen h-screen items-center justify-center">
         <span className="text-purple-600 ">
-          We are getting you shape please wait.🙂
+          please wait connecting....🙂
         </span>
       </div>
     );

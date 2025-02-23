@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "./helper";  
 
 export function middleware(req: Request, res: Response, next: NextFunction) {
-  console.log("Received Cookies:", req.cookies); 
   try {
     const token = req.cookies["token"];
 

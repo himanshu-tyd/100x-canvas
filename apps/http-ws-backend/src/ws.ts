@@ -41,7 +41,6 @@ type User = {
   
     const url = request.url;
 
-  
     if (!url) {
       return;
     }
