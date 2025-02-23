@@ -1,15 +1,16 @@
 # 🎨 DrawCanvas
 
-A real-time collaborative drawing application built with Next.js and WebSocket technology. This project was developed as part of the 100xDevs Cohort 3.0 program.
+A real-time collaborative drawing application built with Next.js and WebSocket technology, designed for seamless user interaction and creativity. This project was developed as part of the 100xDevs Cohort 3.0 program.
+
 
 ## ✨ Features
 
-- 🖌️ Real-time drawing collaboration
-- 🎯 Multiple tool options (Pen, Line, Rectangle, Circle)
-- 🔐 User authentication with secure sessions
+- 🖌️ Real-time drawing collaboration with multiple users
+- 🎯 Enhanced tool options (Pen, Line, Rectangle, Circle, Eraser)
+- 🔐 User authentication with secure sessions and role management
 - 🏠 Create or join drawing rooms with unique room codes
-- 📱 Responsive design for desktop and mobile devices
-
+- 📱 Fully responsive design for desktop and mobile devices
+- 🌐 Save and load drawings from the cloud
 
 
 ## 🚀 Getting Started
@@ -36,9 +37,10 @@ pnpm dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+
 ## 🛠️ Tech Stack
 
-- ⚡ Next.js 14 with App Router
+- ⚡ Next.js 15 with App Router
 - 🎭 TypeScript for type safety
 - 🎨 Tailwind CSS for styling
 - 🔌 WebSocket for real-time communication
@@ -46,54 +48,52 @@ pnpm dev
 - 📦 Prisma as ORM
 - 🗄️ PostgreSQL for database
 - 🎯 Canvas API for drawing functionality
-<!-- - ☁️ Vercel for deployment -->
+- ☁️ Vercel for deployment
 
 ## 📁 Project Structure
 
 ```
-.
-├── apps/
-│   └── drawcanvas/          # Main Next.js application
-├── packages/
-│   ├── backend-common/      # Shared backend utilities
-│   │   └── src/
-│   ├── common/             # Shared utilities and types
-│   │   └── src/
-│   ├── db/                 # Database configuration and models
-│   │   ├── prisma/
-│   │   │   └── migrations/
-│   │   └── src/
-│   ├── eslint-config/     # Shared ESLint configuration
-│   ├── typescript-config/ # Shared TypeScript configuration
-│   └── ui/               # Shared UI components
-│       └── src/
+100x-canvas/
+├─ apps/
+│  ├─ drawcanvas/
+│  └─ http-ws-backend/
+├─ packages/
+│  ├─ eslint-config/
+│  ├─ typescript-config/
+│  └─ ui/
+├─ .gitignore
+├─ .hintrc
+├─ .node-version
+├─ .npmrc
+├─ LICENSE
+├─ package.json
+├─ pnpm-lock.yaml
+├─ pnpm-workspace.yaml
+├─ README.md
+└─ turbo.json
 ```
 
 Key directories:
 - `apps/drawcanvas`: Main Next.js application with all the drawing functionality
-- `packages/backend-common`: Shared backend utilities and helper functions
-- `packages/common`: Shared types, constants, and utility functions
-- `packages/db`: Database schema, migrations, and Prisma configuration
-- `packages/ui`: Reusable React components shared across the application
+- `apps/http-ws-backend`: Backend for handling WebSocket connections
+- `packages/eslint-config`: Shared ESLint configuration
 - `packages/typescript-config`: Shared TypeScript configuration
-- `packages/eslint-config`: Shared ESLint rules and configuration
+- `packages/ui`: Shared UI components
 
 ## 🌟 Key Features Explained
 
 ### Real-time Collaboration
 - Multiple users can draw simultaneously
 - Cursor positions are synced across all users
-- Changes are reflected  for all participants
+- Changes are reflected for all participants
 
 ### Drawing Tools
 - Pen tool with adjustable stroke width
-- Shape tools: Line, Rectangle, Circle
-
+- Shape tools: Line, Rectangle, Circle, and Eraser
 
 ### Room Management
 - Create drawing rooms
 - Join existing rooms via unique codes
-
 
 ## 🤝 Contributing
 
