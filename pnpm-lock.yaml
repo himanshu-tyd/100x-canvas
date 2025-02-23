@@ -82,8 +82,8 @@ importers:
   apps/http-ws-backend:
     dependencies:
       '@prisma/client':
-        specifier: 6.3.1
-        version: 6.3.1(prisma@6.4.1(typescript@5.5.4))(typescript@5.5.4)
+        specifier: 6.4.1
+        version: 6.4.1(prisma@6.4.1(typescript@5.5.4))(typescript@5.5.4)
       '@types/ws':
         specifier: ^8.5.13
         version: 8.5.14
@@ -616,8 +616,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@prisma/client@6.3.1':
-    resolution: {integrity: sha512-ARAJaPs+eBkemdky/XU3cvGRl+mIPHCN2lCXsl5Vlb0E2gV+R6IN7aCI8CisRGszEZondwIsW9Iz8EJkTdykyA==}
+  '@prisma/client@6.4.1':
+    resolution: {integrity: sha512-A7Mwx44+GVZVexT5e2GF/WcKkEkNNKbgr059xpr5mn+oUm2ZW1svhe+0TRNBwCdzhfIZ+q23jEgsNPvKD9u+6g==}
     engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
@@ -3414,7 +3414,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@prisma/client@6.3.1(prisma@6.4.1(typescript@5.5.4))(typescript@5.5.4)':
+  '@prisma/client@6.4.1(prisma@6.4.1(typescript@5.5.4))(typescript@5.5.4)':
     optionalDependencies:
       prisma: 6.4.1(typescript@5.5.4)
       typescript: 5.5.4

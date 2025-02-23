@@ -12,9 +12,12 @@ interface roomProps {
 const RoomCanvas = ({ roomId }: roomProps) => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
+  const ws_url = process.env.NEXT_PUBLIC_WS_SERVER ?? BASE_WS_URL;
+
+  console.log(ws_url)
 
   useEffect(() => {
-    const ws = new WebSocket(`${BASE_WS_URL}?token=${token}`);
+    const ws = new WebSocket(`${ws_url}?token=${token}`);
 
     ws.onopen = () => {
       setSocket(ws);

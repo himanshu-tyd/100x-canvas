@@ -9,7 +9,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@prisma/client": "6.3.1",
+    "@prisma/client": "6.4.1",
     "@types/ws": "^8.5.13",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
